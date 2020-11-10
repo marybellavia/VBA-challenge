@@ -68,7 +68,7 @@ Sub StockMarket()
             End If
             
             'calculating percent change based on yearlychange
-            If YearlyChange = 0 Then
+            If YearlyOpen = 0 Then
                 PercentChange = 0
             Else
                 PercentChange = (YearlyChange / YearlyOpen)
@@ -103,17 +103,17 @@ Sub StockMarket()
     ' loop for going through results
     For b = 2 To wsheet.Cells(Rows.Count, 1).End(xlUp).Row
         ' conditional for increase and printing result
-        If wsheet.Cells(b, 10).Value >= GreatestIncrease Then
-            GreatestIncrease = wsheet.Cells(b, 10).Value
+        If wsheet.Cells(b, 11).Value > GreatestIncrease Then
+            GreatestIncrease = wsheet.Cells(b, 11).Value
             wsheet.Cells(2, 15).Value = wsheet.Cells(b, 9).Value
-            wsheet.Cells(2, 16).Value = GreatestIncrease
+            wsheet.Cells(2, 16).Value = FormatPercent(GreatestIncrease)
         End If
         
         ' conditional for decrease and printing result
-        If wsheet.Cells(b, 10).Value <= GreatestDecrease Then
-            GreatestDecrease = wsheet.Cells(b, 10).Value
+        If wsheet.Cells(b, 11).Value < GreatestDecrease Then
+            GreatestDecrease = wsheet.Cells(b, 11).Value
             wsheet.Cells(3, 15).Value = wsheet.Cells(b, 9).Value
-            wsheet.Cells(3, 16).Value = GreatestDecrease
+            wsheet.Cells(3, 16).Value = FormatPercent(GreatestDecrease)
         End If
         
         ' conditional for greatest total value and printing result
