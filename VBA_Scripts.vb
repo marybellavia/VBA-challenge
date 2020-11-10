@@ -71,10 +71,10 @@ Sub StockMarket()
             If YearlyChange = 0 Then
                 PercentChange = 0
             Else
-                PercentChange = (YearlyChange / YearlyOpen) * 100
+                PercentChange = (YearlyChange / YearlyOpen)
             End If
             ' printing the percent change
-            wsheet.Cells(TickerRow, 11).Value = PercentChange
+            wsheet.Cells(TickerRow, 11).Value = FormatPercent(PercentChange)
             ' setting the Yearly back at one for the other part of the if statement
             YearlyOpen = 1
             ' upping the TickerRow so that the data will go to the next row when printing
